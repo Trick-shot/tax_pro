@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def admin_sign_in(request):
+    template_name = 'admin_dashboard/sign-in.html'
+    return render(request, template_name)
