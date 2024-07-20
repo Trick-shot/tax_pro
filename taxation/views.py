@@ -11,7 +11,8 @@ from .forms import ClientCreationForm, ClientLoginForm
 
 
 def index(request):
-    return render(request)
+    template_name = 'client/index.html'
+    return render(request, template_name)
 
 def register_client(request):
     template_name = 'client/register.html'
