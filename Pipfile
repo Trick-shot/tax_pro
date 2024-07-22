@@ -5,9 +5,8 @@ name = "pypi"
 
 [packages]
 django = "*"
+django-jazzmin = "*"
 mysqlclient = "*"
-mysql = "*"
-client = "*"
 
 [dev-packages]
 

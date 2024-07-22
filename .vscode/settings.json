@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["taxpro"]
+  "cSpell.words": ["taxpro"],
+  "python.REPL.enableREPLSmartSend": false
 }

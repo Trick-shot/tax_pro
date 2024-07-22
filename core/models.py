@@ -8,6 +8,7 @@ class MyUserManager(BaseUserManager):
         if not email:
             raise ValueError("User must have an email address")
         
+        email = self.normalize_email(email)
         user = self.model(email=self.normalize_email(email), full_name=full_name)
         
         if password:
@@ -20,6 +21,23 @@ class MyUserManager(BaseUserManager):
         
         user.save(using=self._db)
         return user
+    
+     def create_superuser(self, full_name, email, password=None):
+        """
+        Creates and saves a superuser with the given email, date of
+        birth and password.
+        """
+        user = self.create_user(
+            email,
+            full_name=full_name,
+            password=password,
+        )
+        user.is_admin = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
     
 class User(AbstractUser):
     email = models.EmailField( verbose_name="email address", max_length=255,unique=True)
@@ -36,3 +54,5 @@ class User(AbstractUser):
     
     def __str__(self):
         return self.email
+
+

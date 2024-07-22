@@ -22,9 +22,16 @@
       href="{% static 'assets/img/favicon.png' %}"
     />
 
+
+<link rel="stylesheet" href="{% static 'assets/plugins/summernote-bs4.min.css'  %}">
+
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap-tagsinput.css'  %}">
+
     <link rel="stylesheet" href="{% static 'assets/css/client/bootstrap.min.css'  %}" />
+    
 
     <link rel="stylesheet" href="{% static 'assets/css/client/bootstrap-datetimepicker.min.css'  %}" />
+      <link rel="stylesheet" href="{% static 'assets/css/client/dataTables.bootstrap5.min.css'  %}" />
 
     <link rel="stylesheet" href="{% static 'assets/css/client/animate.css'  %}" />
 
@@ -41,9 +48,9 @@
 
 
   <body>
-    <div id="global-loader">
+    {% comment %} <div id="global-loader">
       <div class="whirly-loader"></div>
-    </div>
+    </div> {% endcomment %}
 
     <div class="main-wrapper">
       <div class="header">
@@ -80,134 +87,7 @@
               <i data-feather="maximize"></i>
             </a>
           </li>
-          <li class="nav-item dropdown nav-item-box">
-            <a
-              href="javascript:void(0);"
-              class="dropdown-toggle nav-link"
-              data-bs-toggle="dropdown"
-            >
-              <i data-feather="bell"></i
-              ><span class="badge rounded-pill">2</span>
-            </a>
-            <div class="dropdown-menu notifications">
-              <div class="topnav-dropdown-header">
-                <span class="notification-title">Notifications</span>
-                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-              </div>
-              <div class="noti-content">
-                <ul class="notification-list">
-                  <li class="notification-message">
-                    <a href="activities.html">
-                      <div class="media d-flex">
-                        <span class="avatar flex-shrink-0">
-                          <img alt src="{% static 'assets/img/profiles/avatar-02.jpg' %}" />
-                        </span>
-                        <div class="media-body flex-grow-1">
-                          <p class="noti-details">
-                            <span class="noti-title">John Doe</span> added new
-                            task
-                            <span class="noti-title"
-                              >Patient appointment booking</span
-                            >
-                          </p>
-                          <p class="noti-time">
-                            <span class="notification-time">4 mins ago</span>
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="notification-message">
-                    <a href="activities.html">
-                      <div class="media d-flex">
-                        <span class="avatar flex-shrink-0">
-                          <img alt src="{% static 'assets/img/profiles/avatar-03.jpg' %}" />
-                        </span>
-                        <div class="media-body flex-grow-1">
-                          <p class="noti-details">
-                            <span class="noti-title">Tarah Shropshire</span>
-                            changed the task name
-                            <span class="noti-title"
-                              >Appointment booking with payment gateway</span
-                            >
-                          </p>
-                          <p class="noti-time">
-                            <span class="notification-time">6 mins ago</span>
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="notification-message">
-                    <a href="activities.html">
-                      <div class="media d-flex">
-                        <span class="avatar flex-shrink-0">
-                          <img alt src="{% static 'assets/img/profiles/avatar-06.jpg' %}" />
-                        </span>
-                        <div class="media-body flex-grow-1">
-                          <p class="noti-details">
-                            <span class="noti-title">Misty Tison</span> added
-                            <span class="noti-title">Domenic Houston</span> and
-                            <span class="noti-title">Claire Mapes</span> to
-                            project
-                            <span class="noti-title"
-                              >Doctor available module</span
-                            >
-                          </p>
-                          <p class="noti-time">
-                            <span class="notification-time">8 mins ago</span>
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="notification-message">
-                    <a href="activities.html">
-                      <div class="media d-flex">
-                        <span class="avatar flex-shrink-0">
-                          <img alt src="{% static 'assets/img/profiles/avatar-17.jpg' %}" />
-                        </span>
-                        <div class="media-body flex-grow-1">
-                          <p class="noti-details">
-                            <span class="noti-title">Rolland Webber</span>
-                            completed task
-                            <span class="noti-title"
-                              >Patient and Doctor video conferencing</span
-                            >
-                          </p>
-                          <p class="noti-time">
-                            <span class="notification-time">12 mins ago</span>
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="notification-message">
-                    <a href="activities.html">
-                      <div class="media d-flex">
-                        <span class="avatar flex-shrink-0">
-                          <img alt src="{% static 'assets/img/profiles/avatar-13.jpg' %}" />
-                        </span>
-                        <div class="media-body flex-grow-1">
-                          <p class="noti-details">
-                            <span class="noti-title">Bernardo Galaviz</span>
-                            added new task
-                            <span class="noti-title">Private chat module</span>
-                          </p>
-                          <p class="noti-time">
-                            <span class="notification-time">2 days ago</span>
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="topnav-dropdown-footer">
-                <a href="activities.html">View all Notifications</a>
-              </div>
-            </div>
-          </li>
+          
 
           <li class="nav-item dropdown has-arrow main-drop">
             <a
@@ -216,16 +96,8 @@
               data-bs-toggle="dropdown"
             >
               <span class="user-info">
-                <span class="user-letter">
-                  <img
-                    src="{% static 'assets/img/profiles/avator1.jpg' %}"
-                    alt
-                    class="img-fluid"
-                  />
-                </span>
                 <span class="user-detail">
-                  <span class="user-name">John Smilga</span>
-                  <span class="user-role">Super Admin</span>
+                  <span class="user-name">{{ request.user.full_name }}</span>
                 </span>
               </span>
             </a>
@@ -237,8 +109,7 @@
                     <span class="status online"></span
                   ></span>
                   <div class="profilesets">
-                    <h6>John Smilga</h6>
-                    <h5>Super Admin</h5>
+                    <h6>{{ request.user.full_name }}</h6>
                   </div>
                 </div>
                 <hr class="m-0" />
@@ -280,10 +151,7 @@
                     ></a>
                     <ul>
                       <li>
-                        <a href="index.html" class="active">Admin Dashboard</a>
-                      </li>
-                      <li>
-                        <a href="sales-dashboard.html">Sales Dashboard</a>
+                        <a href="{% url 'home' %}" class="active">Admin Dashboard</a>
                       </li>
                     </ul>
                   </li>
@@ -293,8 +161,8 @@
                 <h6 class="submenu-hdr">Inventory</h6>
                 <ul>
                   <li>
-                    <a href="product-list.html"
-                      ><i data-feather="box"></i><span>Products</span></a
+                    <a href="{% url 'products' %}"
+                      ><i data-feather="box"></i><span>Sales</span></a
                     >
                   </li>
                   <li>
@@ -305,33 +173,15 @@
                   </li>
                   </li>
                   </li>
-                  <li>
-                    <a href="category-list.html"
-                      ><i data-feather="codepen"></i><span>Category</span></a
-                    >
-                  </li>
-                 
-                  <li>
-                    <a href="units.html"
-                      ><i data-feather="speaker"></i><span>Units</span></a
-                    >
-                  </li>
-        
                 </ul>
               </li>
               <li class="submenu-open">
                 <h6 class="submenu-hdr">Stock</h6>
                 <ul>
                   <li>
-                    <a href="manage-stocks.html"
+                    <a href="{% url 'stock' %}"
                       ><i data-feather="package"></i
                       ><span>Manage Stock</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="stock-adjustment.html"
-                      ><i data-feather="clipboard"></i
-                      ><span>Stock Adjustment</span></a
                     >
                   </li>
                 </ul>
@@ -345,6 +195,15 @@
 {% block content %}
 
 {% endblock content %}
+
+<script src="{% static 'assets/js/client/jquery.dataTables.min.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+<script src="{% static 'assets/js/client/dataTables.bootstrap5.min.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+<script src="{% static 'assets/plugins/client/summernote-bs4.min.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+<script src="{% static 'assets/plugins/client/select2.min.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+<script src="{% static 'assets/js/client/moment.min.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+<script src="{% static 'assets/js/client/bootstrap-datetimepicker.min.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+<script src="{% static 'assets/plugins/client/bootstrap-tagsinput.js' %}" type="667847912cc01ae3de7016a4-text/javascript"></script>
+
 
     <script
       src="{% static 'assets/js/client/jquery-3.7.1.min.js'  %}"
