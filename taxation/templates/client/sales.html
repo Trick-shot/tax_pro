@@ -1,6 +1,4 @@
-{% extends 'client/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'client/base.html' %} {% load static %} {% block content %}
 <div class="page-wrapper">
   <div class="content">
     <div class="page-header">
@@ -11,7 +9,12 @@
         </div>
       </div>
       <div class="page-btn">
-        <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-sales-new">
+        <a
+          href="#"
+          class="btn btn-added"
+          data-bs-toggle="modal"
+          data-bs-target="#add-sales-new"
+        >
           <i data-feather="plus-circle" class="me-2"></i> Add New Sales
         </a>
       </div>
@@ -28,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for sale in sales_list %}
+          {% for sale in sales %}
           <tr>
             <td>{{ sale.stock }}</td>
             <td>{{ sale.date }}</td>
@@ -52,18 +55,30 @@
             <div class="page-title">
               <h4>Add Sales</h4>
             </div>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="card">
             <div class="card-body">
               <form action="{% url 'sales' %}" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
+                {% csrf_token %} {{ form.as_p }}
                 <div class="col-lg-12 text-end">
-                  <button type="button" class="btn btn-cancel add-cancel me-3" data-bs-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-submit add-sale">Submit</button>
+                  <button
+                    type="button"
+                    class="btn btn-cancel add-cancel me-3"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-submit add-sale">
+                    Submit
+                  </button>
                 </div>
               </form>
             </div>

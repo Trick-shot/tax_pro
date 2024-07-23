@@ -14,7 +14,7 @@ class Stock(models.Model):
     stock_type = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return f"Stock: {self.stock_type} - Quantity: {self.quantity}"
+        return f"{self.stock_type}"
 
 class Sales(models.Model):
     stock = models.ForeignKey(Stock, on_delete=models.PROTECT, null=True, blank=True)
@@ -22,11 +22,17 @@ class Sales(models.Model):
     quantity = models.IntegerField(null=True, blank=True)
     unit_price = models.IntegerField(null=True, blank=True)
     total_amount = models.IntegerField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.stock_type}"
 
 class Expenses(models.Model):
     Expenses = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     total_amount = models.IntegerField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.Expenses}"
 
 class Purchases(models.Model):
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)

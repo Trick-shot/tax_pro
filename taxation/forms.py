@@ -51,9 +51,7 @@ class SalesForm(forms.ModelForm):
         model = Sales
         fields = ['stock', 'quantity', 'unit_price', 'total_amount']
 
-class ExpensesForm(forms.ModelForm):
-    
-    
+class ExpensesForm(forms.ModelForm):    
     class Meta:
         model = Expenses
         fields = ['Expenses', 'total_amount']

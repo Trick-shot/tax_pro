@@ -7,7 +7,7 @@ from django.db.models import Sum
 from django.contrib import admin
 
 from core.models import User
-from .models import Client, Sales ,Purchases, Stock
+from .models import Client, Sales ,Purchases, Stock, Expenses
 from .forms import ClientCreationForm, ClientLoginForm, ExpensesForm, SalesForm
 
 
@@ -61,7 +61,7 @@ def index(request):
     total_sales_amount = total_sales if total_sales else 0
     
   
-    total_purchases = Purchases.objects.aggregate(total_purchase=Sum('total_amount'))['total_purchase']
+    total_purchases = Expenses.objects.aggregate(total_purchase=Sum('total_amount'))['total_purchase']
     total_purchase_amount = total_purchases if total_purchases else 0
     
  
@@ -93,13 +93,28 @@ def index(request):
 
 def sales(request):
     template_name = 'client/sales.html'
-    return render(request, template_name)
+    sales = Sales.objects.all()
+    if request.method == 'POST':
+        form = SalesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sales')  # You can define the 'sales_list' URL later
+    else:
+        form = SalesForm()
+    return render(request, template_name, {"sales": sales, "form": form})
 
 
 def expenses(request):
     template_name = 'client/expenses.html'
-    stocks = Stock.objects.all()
-    return render(request, template_name, {"stocks":stocks})
+    expenses = Expenses.objects.all()
+    if request.method == 'POST':
+        form = ExpensesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('expenses')  
+    else:
+        form = ExpensesForm()
+    return render(request, template_name, {"expenses":expenses, "form":form})
 
 def stock(request):
     if request.user.is_authenticated and hasattr(request.user, 'client'):
@@ -111,22 +126,3 @@ def stock(request):
     return render(request, 'client/stock.html', {'stocks': stocks})
 
 
-def add_sales(request):
-    if request.method == 'POST':
-        form = SalesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('sales')  # You can define the 'sales_list' URL later
-    else:
-        form = SalesForm()
-    return render(request, 'sales.html', {'form': form})
-
-def add_expenses(request):
-    if request.method == 'POST':
-        form = ExpensesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('expenses')  # You can define the 'expenses_list' URL later
-    else:
-        form = ExpensesForm()
-    return render(request, 'expenses.html', {'form': form})

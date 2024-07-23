@@ -23,21 +23,18 @@
       <table class="table datanew">
         <thead>
           <tr>
-            <th>Stock</th>
+            <th>Expenses</th>
             <th>Date</th>
-            <th>Quantity</th>
-            <th>Unit Price</th>
             <th>Total Amount</th>
           </tr>
         </thead>
+
         <tbody>
-          {% for sale in sales_list %}
+          {% for expense in expenses %}
           <tr>
-            <td>{{ sale.stock }}</td>
-            <td>{{ sale.date }}</td>
-            <td>{{ sale.quantity }}</td>
-            <td>{{ sale.unit_price }}</td>
-            <td>{{ sale.total_amount }}</td>
+            <td>{{ expense.Expenses }}</td>
+            <td>{{ expense.date }}</td>
+            <td>{{ expense.total_amount }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -66,9 +63,8 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <form action="{% url 'sales' %}" method="post">
-                {% csrf_token %} 
-                {{ form.as_p }}
+              <form action="{% url 'expenses' %}" method="post">
+                {% csrf_token %} {{ form.as_p }}
                 <div class="col-lg-12 text-end">
                   <button
                     type="button"
