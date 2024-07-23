@@ -8,7 +8,7 @@ from django.contrib import admin
 
 from core.models import User
 from .models import Client, Sales ,Purchases, Stock
-from .forms import ClientCreationForm, ClientLoginForm
+from .forms import ClientCreationForm, ClientLoginForm, ExpensesForm, SalesForm
 
 
 def register_client(request): 
@@ -60,17 +60,17 @@ def index(request):
     total_sales = Sales.objects.aggregate(total_sales=Sum('total_amount'))['total_sales']
     total_sales_amount = total_sales if total_sales else 0
     
-    # Calculate total purchase amount
+  
     total_purchases = Purchases.objects.aggregate(total_purchase=Sum('total_amount'))['total_purchase']
     total_purchase_amount = total_purchases if total_purchases else 0
     
-    # Calculate net profit
+ 
     net_profit = total_sales_amount - total_purchase_amount
     
-    # Initialize tax_to_be_paid
+
     tax_to_be_paid = 0
     
-    # Calculate tax based on total sales amount
+   
     if total_sales_amount <= 3000000:
         tax_to_be_paid = 0
     elif total_sales_amount > 3000000 and total_sales_amount <= 10000000:
@@ -91,15 +91,15 @@ def index(request):
     return render(request, template_name, context=data)
 
 
-def products(request):
+def sales(request):
     template_name = 'client/sales.html'
     return render(request, template_name)
 
 
-# def stock(request):
-#     template_name = 'client/stock.html'
-#     stocks = Stock.objects.all()
-#     return render(request, template_name, {"stocks":stocks})
+def expenses(request):
+    template_name = 'client/expenses.html'
+    stocks = Stock.objects.all()
+    return render(request, template_name, {"stocks":stocks})
 
 def stock(request):
     if request.user.is_authenticated and hasattr(request.user, 'client'):
@@ -109,3 +109,24 @@ def stock(request):
         stocks = Stock.objects.none()
     
     return render(request, 'client/stock.html', {'stocks': stocks})
+
+
+def add_sales(request):
+    if request.method == 'POST':
+        form = SalesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sales')  # You can define the 'sales_list' URL later
+    else:
+        form = SalesForm()
+    return render(request, 'sales.html', {'form': form})
+
+def add_expenses(request):
+    if request.method == 'POST':
+        form = ExpensesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('expenses')  # You can define the 'expenses_list' URL later
+    else:
+        form = ExpensesForm()
+    return render(request, 'expenses.html', {'form': form})

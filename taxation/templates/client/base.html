@@ -22,7 +22,19 @@
       href="{% static 'assets/img/favicon.png' %}"
     />
 
-
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'assets/css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'assets/css/all.min.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+    <!-- Colors Css -->
+    <link id="color-switcher" type="text/css" rel="stylesheet" href="#" />
 <link rel="stylesheet" href="{% static 'assets/plugins/summernote-bs4.min.css'  %}">
 
 <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap-tagsinput.css'  %}">
@@ -161,14 +173,14 @@
                 <h6 class="submenu-hdr">Inventory</h6>
                 <ul>
                   <li>
-                    <a href="{% url 'products' %}"
+                    <a href="{% url 'sales' %}"
                       ><i data-feather="box"></i><span>Sales</span></a
                     >
                   </li>
                   <li>
-                    <a href="add-product.html"
+                    <a href="{% url 'expenses' %}"
                       ><i data-feather="plus-square"></i
-                      ><span>Create Product</span></a
+                      ><span>expenses</span></a
                     >
                   </li>
                   </li>

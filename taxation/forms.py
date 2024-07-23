@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from core.models import User
-from taxation.models import Client
+from taxation.models import Client, Sales, Expenses
 
 
 class ClientCreationForm(forms.Form):
@@ -46,3 +46,14 @@ class ClientLoginForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=100,  widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password = forms.CharField(label='Password', max_length=100,  widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
     
+class SalesForm(forms.ModelForm):
+    class Meta:
+        model = Sales
+        fields = ['stock', 'quantity', 'unit_price', 'total_amount']
+
+class ExpensesForm(forms.ModelForm):
+    
+    
+    class Meta:
+        model = Expenses
+        fields = ['Expenses', 'total_amount']

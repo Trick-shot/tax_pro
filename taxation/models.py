@@ -23,6 +23,11 @@ class Sales(models.Model):
     unit_price = models.IntegerField(null=True, blank=True)
     total_amount = models.IntegerField(null=True, blank=True)
 
+class Expenses(models.Model):
+    Expenses = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    total_amount = models.IntegerField(null=True, blank=True)
+
 class Purchases(models.Model):
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     total_amount = models.IntegerField(null=True, blank=True)
