@@ -10,15 +10,15 @@ class StockAdmin(admin.ModelAdmin):
     list_display = ('client', 'stock_type', 'quantity')
     list_filter = ('client', 'stock_type')
 
-@admin.register(Sales)
-class SalesAdmin(admin.ModelAdmin):
-    list_display = ('stock', 'date', 'quantity', 'unit_price', 'total_amount')
-    list_filter = ('stock', 'date')
+# @admin.register(Sales)
+# class SalesAdmin(admin.ModelAdmin):
+#     list_display = ('stock', 'date', 'quantity', 'unit_price', 'total_amount')
+#     list_filter = ('stock', 'date')
 
-@admin.register(Purchases)
-class PurchasesAdmin(admin.ModelAdmin):
-    list_display = ('date', 'total_amount')
+# @admin.register(Purchases)
+# class PurchasesAdmin(admin.ModelAdmin):
+#     list_display = ('date', 'total_amount')
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('tin_number', 'stock_type', 'date', 'quantity')
+# @admin.register(Profile)
+# class ProfileAdmin(admin.ModelAdmin):
+#     list_display = ('tin_number', 'stock_type', 'date', 'quantity')

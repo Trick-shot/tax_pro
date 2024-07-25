@@ -3,7 +3,7 @@ from django.conf import settings
 
 class Client(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    tin_number = models.IntegerField()
+    tin_number = models.CharField(max_length=15)
 
     def __str__(self):
         return f"Client: {self.user.email}"
@@ -23,9 +23,19 @@ class Sales(models.Model):
     unit_price = models.IntegerField(null=True, blank=True)
     total_amount = models.IntegerField(null=True, blank=True)
     
+    
     def __str__(self):
         return f"{self.stock_type}"
 
+    def save(self, *args, **kwargs):
+        if self.pk is None:  
+            self.total_amount = self.quantity * self.unit_price
+            super().save(*args, **kwargs)
+            self.stock.quantity -= self.quantity
+            self.stock.save()
+        else:
+            super().save(*args, **kwargs)
+            
 class Expenses(models.Model):
     Expenses = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
