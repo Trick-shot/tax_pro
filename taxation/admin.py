@@ -3,7 +3,7 @@ from .models import Client, Stock, Sales, Purchases, Profile
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('user', 'tin_number')
+    list_display = ('user', 'get_full_name','tin_number', 'get_tax_to_be_paid')
 
 @admin.register(Stock)
 class StockAdmin(admin.ModelAdmin):
